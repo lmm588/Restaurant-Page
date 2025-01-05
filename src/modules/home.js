@@ -29,6 +29,9 @@ export default function buildHome(domElements) {
 
   const aboutUsSection = createElement("div", { class: "about-us" });
   const menuSection = createElement("div", { class: "menu-section" });
+  const menuSectionWrapper = createElement("div", {
+    id: "menu-section-wrapper",
+  });
   const descriptionHeader = createElement("h2");
   const descriptionText = createElement("p");
   const menuHeader = createElement("h2");
@@ -52,10 +55,13 @@ export default function buildHome(domElements) {
   ];
 
   const renderHome = () => {
-    domElements.mainContent.append(aboutUsSection, menuSection);
+    domElements.mainContent.append(aboutUsSection, menuSectionWrapper);
     aboutUsSection.append(descriptionHeader, descriptionText);
+    menuSectionWrapper.append(menuSection);
+    observer.observe(menuSection);
     menuSection.append(menuHeader, productHeaderText, menuText, productGrid);
-    for (let i = 0; i <= 8; i++) {
+
+    for (let i = 0; i < products.length; i++) {
       const product = createElement("div", {
         class: "grid-item",
         position: i + 1,
@@ -88,7 +94,14 @@ export default function buildHome(domElements) {
     }
   };
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        menuSection.classList.add("animate");
+        observer.unobserve(menuSection);
+      }
+    });
+  });
+
   return { renderHome };
 }
-
-export const clearHome = () => (domElements.mainContent.textContent = "");

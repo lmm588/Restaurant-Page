@@ -6,6 +6,9 @@ export function cacheDOM() {
     navBar: getElementBySelectorOrId("nav"),
     body: getElementBySelectorOrId("body"),
     header: getElementBySelectorOrId("header"),
+    gridItems: document.querySelectorAll(".grid-item"),
+    menuSection: getElementBySelectorOrId(".menu-section"),
+    aboutUs: getElementBySelectorOrId(".about-us"),
   };
 }
 
