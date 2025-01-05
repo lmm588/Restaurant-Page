@@ -27,6 +27,13 @@ export default function buildHome(domElements) {
     
     Explore our wide variety of delicious options!`;
 
+  const contactUsText = `123 Sweet Treat Lane
+  ConeVille, CA
+  98765
+  01234 012234
+  thefrostedcone@fake.email.com
+  `;
+
   const aboutUsSection = createElement("div", { class: "about-us" });
   const menuSection = createElement("div", { class: "menu-section" });
   const menuSectionWrapper = createElement("div", {
@@ -41,6 +48,16 @@ export default function buildHome(domElements) {
   const productFooterText = createElement("p", {
     class: "product-footer-text",
   });
+  const contactSectionWrapper = createElement("div", {
+    id: "contact-section-wrapper",
+  });
+  const contactSection = createElement("div", { class: "contact-section" });
+  const contactSectionHeader = createElement("h2");
+  const contactDetails = createElement("p");
+  const contactEmailTextArea = createElement("input", {
+    type: "text-area",
+  });
+  const contactEmailText = createElement("p");
 
   const products = [
     { name: "Blueberry Burst", image: blueberryBurst },
@@ -55,9 +72,20 @@ export default function buildHome(domElements) {
   ];
 
   const renderHome = () => {
-    domElements.mainContent.append(aboutUsSection, menuSectionWrapper);
+    domElements.mainContent.append(
+      aboutUsSection,
+      menuSectionWrapper,
+      contactSectionWrapper
+    );
     aboutUsSection.append(descriptionHeader, descriptionText);
     menuSectionWrapper.append(menuSection);
+    contactSection.append(
+      contactSectionHeader,
+      contactDetails,
+      contactEmailTextArea,
+      contactEmailText
+    );
+    contactSectionWrapper.append(contactSection);
     observer.observe(menuSection);
     menuSection.append(menuHeader, productHeaderText, menuText, productGrid);
 
@@ -82,6 +110,10 @@ export default function buildHome(domElements) {
       "Please be aware that our products are crafted in a facility that handles various allergens."
     );
     writeToElement(menuText, menuSectionText);
+    writeToElement(contactSectionHeader, "Location: ");
+    writeToElement(contactDetails, contactUsText);
+    writeToElement(contactEmailText, "Send us an email below: ");
+
     generateProductImages();
   };
 

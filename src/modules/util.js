@@ -9,6 +9,7 @@ export function cacheDOM() {
     gridItems: document.querySelectorAll(".grid-item"),
     menuSection: getElementBySelectorOrId(".menu-section"),
     aboutUs: getElementBySelectorOrId(".about-us"),
+    contactUs: getElementBySelectorOrId("#contact-section-wrapper"),
   };
 }
 

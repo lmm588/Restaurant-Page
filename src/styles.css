@@ -53,7 +53,7 @@ button:hover {
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: max(2.5rem, 1rem);
 }
 
 nav {
@@ -76,12 +76,12 @@ nav > img {
 
 #content {
   color: var(--primary-color-dark);
-  font-size: 2rem;
+  font-size: clamp(0.3vw, 1.8rem, 1.4vw);
   font-weight: 400;
   overflow-y: hidden;
   overflow-x: hidden;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   margin-top: 10vh;
 }
 
@@ -90,22 +90,22 @@ nav > img {
   background-size: cover;
   grid-row: 1;
   padding: var(--space-l);
-  height: var(--section-height);
+  max-height: var(--section-height);
 }
 
 #content .about-us > p {
   margin-top: var(--space-m);
-  width: 35%;
+  max-width: 35%;
 }
 
 #menu-section-wrapper {
   background-color: var(--secondary-color);
+  grid-row: 2;
 }
 
 .menu-section {
   opacity: 0;
   height: var(--section-height);
-  grid-row: 2;
   color: var(--primary-color-light);
   padding: var(--space-l);
   display: grid;
@@ -135,8 +135,8 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 75%;
+  gap: 1.5vh;
+  max-width: 75%;
   justify-self: center;
 }
 
@@ -145,8 +145,8 @@ p {
 }
 
 .grid-item > img {
-  height: 13rem;
-  width: 14.5rem;
+  height: clamp(5px, 15vh, 16vh);
+  width: clamp(2px, 8vw, 10vw);
   border-radius: 20%;
 }
 
@@ -163,7 +163,7 @@ p {
   padding: var(--space-m);
   align-self: center;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .animate {
@@ -171,9 +171,42 @@ p {
   transition: 1.5s opacity linear;
 }
 
-@media (max-width: 1440px) {
-  .product-footer-text {
-    font-size: 0.9rem;
-    padding: var(--space-s);
+#contact-section-wrapper {
+  grid-row: 3;
+  background-color: var(--tertiary-color);
+  height: var(--section-height);
+  padding: var(--space-l);
+}
+
+.contact-section {
+  color: var(--primary-color-dark);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.contact-section > p:first-of-type, h2 {
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+}
+
+.contact-section > h2 {
+  grid-row: 1 / 1;
+}
+
+.contact-section > p:last-of-type {
+  grid-area: 1 / 2 / 1 / 2;
+}
+
+.contact-section > input {
+  background-color: var(--primary-color-light);
+  grid-area: 2 / 2 / 2 / 2;
+  font-size: large;
+  height:80%;
+  width: 50%;
+}
+
+@media (max-width: 1250px) {
+  :root {
+    font-size: 7px;
   }
 }
